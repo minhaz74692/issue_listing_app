@@ -60,4 +60,22 @@ class IssueProvider extends ChangeNotifier {
     setLoading();
     return _issueList;
   }
+
+  List<String> _searchList = [];
+  List<String> get searchList => _searchList;
+
+  clearSearchList() {
+    _searchList.clear();
+    notifyListeners();
+  }
+
+  deleteSearch(String value) {
+    _searchList.remove(value);
+    notifyListeners();
+  }
+
+  addSearch(String search) {
+    _searchList.add(search);
+    notifyListeners();
+  }
 }
