@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:issue_listing_app/data/models/issue_model.dart';
 import 'package:issue_listing_app/data/repository/issue_data_repo.dart';
 
@@ -49,6 +50,10 @@ class IssueProvider extends ChangeNotifier {
       for (var i = 0; i < jsonData.length; i++) {
         _issueList.add(IssueModel.fromJson(jsonData[i]));
       }
+    } else {
+      Fluttertoast.showToast(
+          msg:
+              'Date Loading Error: ${response.statusCode} ${jsonDecode(responseBody)['message'] ?? ''}');
     }
     debugPrint(_issueList.toString());
     notifyListeners();
